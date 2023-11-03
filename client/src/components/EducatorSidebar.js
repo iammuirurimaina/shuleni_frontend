@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Sidebar = () => {
+const EducatorSidebar = () => {
   return (
     <div className="bg-gray-200 h-screen w-1/4 p-4">
       <h2 className="text-2xl font-bold mb-4">Educator Dashboard</h2>
@@ -30,4 +30,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default EducatorSidebar;
