@@ -25,6 +25,8 @@ const LoginForm = ({onClose, onSwitchToSignUp }) => {
 
         localStorage.setItem('token', token);
 
+        //login user based on roles 
+
         const roleId = data.roleId; 
 
         
@@ -45,7 +47,7 @@ const LoginForm = ({onClose, onSwitchToSignUp }) => {
         console.log('data')
       } else {
         setError('Invalid email, password, or role');
-        
+
         console.error('Login failed:', response.statusText);
       }
     } catch (error) {
