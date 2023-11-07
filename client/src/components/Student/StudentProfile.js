@@ -1,17 +1,20 @@
 import React from 'react';
 
-
 const StudentProfile = ({ user }) => {
-  const imageUrl = user.image ? user.image : placeholderImage;
-
   return (
-    <div className="flex items-center p-4 bg-gray-200">
-      <div className="w-20 h-20 rounded-full overflow-hidden mr-4">
-        <img src={imageUrl} alt="Students Profile" className="w-full h-full object-cover" />
+    <div className="flex items-center mb-8">
+      <div className="flex-shrink-0 w-16 h-16 mr-4">
+        <img
+          className="w-full h-full object-cover rounded-full"
+          src={user.photo || 'client/src/components/Student/placeholder.jpg'}
+          alt={`${user.name}'s profile`}
+        />
       </div>
       <div>
-        <h2 className="text-xl font-semibold">{user.first_name} {user.last_name}</h2>
-        <p>{user.email}</p>
+        <h2 className="text-2xl font-bold">{user.name}</h2>
+        <p className="text-gray-600">{user.email_address}</p>
+        <p className="text-gray-600">{user.phone_number}</p>
+        <p className="text-gray-600">{user.role}</p>
       </div>
     </div>
   );

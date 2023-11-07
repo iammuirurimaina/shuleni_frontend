@@ -6,10 +6,10 @@ const ClassCard = ({ className, onAddStudents, onDelete }) => {
       <div className="px-6 py-4">
         <h2 className="font-bold text-xl mb-2">{className}</h2>
         <div className="flex justify-between">
-          <button onClick={onAddStudents} className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+          <button /*onClick={onAddStudents}*/ className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
             Add Students
           </button>
-          <button onClick={onDelete} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+          <button /*onClick={onDelete}*/ className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
             Delete
           </button>
         </div>

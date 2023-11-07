@@ -1,138 +1,139 @@
-import React, { useEffect, useState } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
-import { useFormik } from "formik";
-import * as yup from "yup";
+import React, { useState } from 'react';
+import {useNavigate } from 'react-router-dom';
 
-const AddSchool = () => {
-  const { id } = useParams();
-  const [userData, setUserData] = useState({});
-  const [formSubmitted, setFormSubmitted] = useState(false);
+const LoginForm = ({onClose, onSwitchToSignUp }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  // const [role, setRole] = useState(''); 
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const validationSchema = yup.object().shape({
-    name: yup.string().required("Name is required").max(15),
-    phone: yup.string().required("Phone is required").max(10),
-    email: yup.string().required('Email is required'),
-    role: yup.string().required("Must enter a role"),
-    schoolName: yup.string().required("School Name is required"),
-    schoolLocation: yup.string().required("School Location is required"),
-  });
-
-  useEffect(() => {
-    fetch(`/users/${id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setUserData(data);
-      })
-      .catch((error) => {
-        console.error("Error fetching user data:", error);
-      });
-  }, [id]);
-
-  const formik = useFormik({
-    initialValues: {
-      name: userData.name || "",
-      phone: userData.phone || "",
-      email: userData.email || "",
-      role: userData.role || "",
-      schoolName: userData.schoolName || "",
-      schoolLocation: userData.schoolLocation || "",
-    },
-    validationSchema,
-    onSubmit: (values) => {
-      fetch(`/users/${id}`, {
-        method: "PUT",
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('/login', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(values),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setUserData(data);
-          setFormSubmitted(true);
-          navigate("/users");
-        })
-        .catch((error) => {
-          console.error("Error updating user:", error);
-          alert("An error occurred while updating the user.");
-        });
-    },
-  });
+        body: JSON.stringify({ email_address: email, Password: password }), 
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        const token = data.token;
+
+        localStorage.setItem('token', token);
+
+        const roleId = data.roleId; 
+
+        
+        switch (roleId) {
+          case 1:
+            navigate('/owners-dashboard');
+            break;
+          case 2:
+            navigate('/educator-dashboard');
+            break;
+          case 3:
+            navigate('/students-dashboard');
+            break;
+          default:
+           
+            break;
+        }
+        console.log('data')
+      } else {
+        setError('Invalid email, password, or role');
+        
+        console.error('Login failed:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Login failed:', error);
+    }
+
+  };
 
   return (
-    <div className="mx-auto">
-      <div className="bg-blue-600 px-5 py-5 flex justify-center items-center">
-        <h2 className="text-2xl font-semibold text-white">Add School</h2>
-      </div>
-
-      <div className="bg-white mt-16 flex flex-col items-center justify-center p-4 md:p-8">
-        {formSubmitted ? (
-          <div>
-            <p className="text-blue-600 mb-6 md:mb-12">
-              School added successfully!
-            </p>
-            <Link
-              to="/users"
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-3 py-3 md:px-4 md:py-4 justify-center items-center rounded-xl cursor-pointer"
+    <div className="fixed inset-0 flex items-center justify-center z-50">
+      <div className="bg-white rounded-xl p-4 md:p-8 w-full max-w-md border border-gray-300">
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-xl font-semibold text-black">Sign In</h2>
+        <button
+            type="button"
+            onClick={onClose}
+            className="text-black focus-outline-none flex items-center"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6 mr-2"
             >
-              Back to Users
-            </Link>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
           </div>
-        ) : (
-          <form onSubmit={formik.handleSubmit} className="w-full md:w-1/2">
-            {/* Existing form fields here */}
 
-            <div className="m-5">
-              <input
-                type="text"
-                id="schoolName"
-                placeholder="School Name"
-                name="schoolName"
-                onChange={formik.handleChange}
-                value={formik.values.schoolName}
-                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:border-blue-600"
-              />
-              {formik.errors.schoolName && (
-                <p className="text-red-500 mt-1">{formik.errors.schoolName}</p>
-              )}
-            </div>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-3 py-2 border rounded-xl border-gray-300 focus:outline-none"
+            />
+          </div>
+          <div className="mb-4">
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full px-3 py-2 border rounded-xl border-gray-300 focus:outline-none"
+            />
+          </div>
+          {/* <div className="mb-4">
+            <select
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              className="w-full px-3 py-2 border rounded-xl bg-white border-gray-300 focus:outline-none"
+            >
+              <option value="">Role</option>
+              <option value="Facilitator">Facilitator</option>
+              <option value="Educator">Educator</option>
+              <option value="Student">Student</option>
+            </select>
+          </div> */}
 
-            <div className="m-5">
-              <input
-                type="text"
-                id="schoolLocation"
-                placeholder="School Location"
-                name="schoolLocation"
-                onChange={formik.handleChange}
-                value={formik.values.schoolLocation}
-                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:border-blue-600"
-              />
-              {formik.errors.schoolLocation && (
-                <p className="text-red-500 mt-1">{formik.errors.schoolLocation}</p>
-              )}
-            </div>
+          {error && <div className="m-5 text-red-600">{error}</div>}
 
-            <div className="flex flex-row justify-center items-center mt-8 space-x-20">
-              <button
-                type="submit"
-                className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 py-3 rounded-xl cursor-pointer mb-4"
-              >
-                Add School
-              </button>
-              <Link
-                to="/users"
-                className="bg-blue-600 hover-bg-orange-600 text-white font-bold px-4 py-3 rounded-xl cursor-pointer mb-4"
-              >
-                Back
-              </Link>
-            </div>
-            <button type="submit" className="hidden" />
-          </form>
-        )}
+          <div className="flex justify-between items-center">
+            <button
+              type="submit"
+              className="w-full bg-blue-500 hover.bg-blue-600 text-white rounded-xl px-4 py-2 font-semibold"
+            >
+              Sign In
+            </button>
+          </div>
+        </form>
+        <div className="mt-4 text-center">
+          <p className="text-md text-black font-semibold">
+            Don't have an account?{' '}
+            <span
+              onClick={onSwitchToSignUp}
+              className="text-blue-600 cursor-pointer font-semibold"
+            >
+              Sign up
+            </span>
+          </p>
+        </div>
       </div>
     </div>
   );
 };
 
-export default AddSchool;
+export default LoginForm;
