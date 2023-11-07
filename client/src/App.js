@@ -13,14 +13,6 @@ import AddNotes from './components/Educator/AddNotes'
 import OwnerDashboard from './components/Owners/OwnerDashboard';
 import EducatorDashboard from './components/Educator/EducatorDashboard';
 
-import AddSchools from './components/Owners/AddSchools';
-import StudentDashboard from './components/Student/StudentDashboard';
-import CreateClass from './components/Educator/CreateClass'
-import EditClass from './components/Educator/EditClass'
-import AddNotes from './components/Educator/AddNotes'
-import OwnerDashboard from './components/Owners/OwnerDashboard';
-import EducatorDashboard from './components/Educator/EducatorDashboard';
-
 
 function App() {
   return (

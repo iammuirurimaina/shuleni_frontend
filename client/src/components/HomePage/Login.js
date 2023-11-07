@@ -26,13 +26,14 @@ const LoginForm = ({onClose, onSwitchToSignUp }) => {
 
       if (response.ok) {
         const data = await response.json();
+        console.log(data);
         const token = data.token;
 
         localStorage.setItem('token', token);
 
 
 
-        const roleId = data.roleId; 
+        const roleId = data.role_id; 
 
         
         switch (roleId) {
@@ -60,6 +61,19 @@ const LoginForm = ({onClose, onSwitchToSignUp }) => {
     }
 
   };
+
+  // function handleSubmit(e){
+  //   e.preventDefault();
+  //   fetch('/login',{
+  //     method: 'POST',
+  //     headers:{
+  //       'content-type': 'application/json'
+  //     },
+  //     body: JSON.stringify({email_address:email, password:password})
+  //   })
+  //   .then(res=> res.json())
+  //   .then(data => console.log(data))
+  // }
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
@@ -106,7 +120,7 @@ const LoginForm = ({onClose, onSwitchToSignUp }) => {
 
          
 
-          <div className="mb-4">
+          {/* <div className="mb-4">
 
             <select
               value={role}
@@ -120,7 +134,7 @@ const LoginForm = ({onClose, onSwitchToSignUp }) => {
             </select>
 
 
-          </div>
+          </div> */}
 
 
           {error && <div className="m-5 text-red-600">{error}</div>}
@@ -150,8 +164,6 @@ const LoginForm = ({onClose, onSwitchToSignUp }) => {
   );
 };
 
-
-export default LoginForm;
 
 export default LoginForm;
 
