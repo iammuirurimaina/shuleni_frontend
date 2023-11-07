@@ -3,45 +3,39 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-const AddSchool = () => {
+const EditClass = () => {
   const { id } = useParams();
-  const [userData, setUserData] = useState({});
+  const [classData, setClassData] = useState({});
   const [formSubmitted, setFormSubmitted] = useState(false);
   const navigate = useNavigate();
 
   const validationSchema = yup.object().shape({
-    name: yup.string().required("Name is required").max(15),
-    phone: yup.string().required("Phone is required").max(10),
-    email: yup.string().required('Email is required'),
-    role: yup.string().required("Must enter a role"),
-    schoolName: yup.string().required("School Name is required"),
-    schoolLocation: yup.string().required("School Location is required"),
+    class_name: yup.string().required("Class Name is required"),
+    educator_id: yup.number().required("Educator ID is required"),
+    school_id: yup.number().required("School ID is required"),
   });
 
   useEffect(() => {
-    fetch(`/users/${id}`)
+    fetch(`/classes/${id}`)
       .then((response) => response.json())
       .then((data) => {
-        setUserData(data);
+        setClassData(data);
       })
       .catch((error) => {
-        console.error("Error fetching user data:", error);
+        console.error("Error fetching class data:", error);
       });
   }, [id]);
 
   const formik = useFormik({
     initialValues: {
-      name: userData.name || "",
-      phone: userData.phone || "",
-      email: userData.email || "",
-      role: userData.role || "",
-      schoolName: userData.schoolName || "",
-      schoolLocation: userData.schoolLocation || "",
+      class_name: classData.class_name || "",
+      educator_id: classData.educator_id || "",
+      school_id: classData.school_id || "",
     },
     validationSchema,
     onSubmit: (values) => {
-      fetch(`/users/${id}`, {
-        method: "PUT",
+      fetch(`/classes/${id}`, {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
@@ -49,13 +43,13 @@ const AddSchool = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          setUserData(data);
+          setClassData(data);
           setFormSubmitted(true);
-          navigate("/users");
+          navigate("/classes");
         })
         .catch((error) => {
-          console.error("Error updating user:", error);
-          alert("An error occurred while updating the user.");
+          console.error("Error updating class:", error);
+          alert("An error occurred while updating the class.");
         });
     },
   });
@@ -63,53 +57,66 @@ const AddSchool = () => {
   return (
     <div className="mx-auto">
       <div className="bg-blue-600 px-5 py-5 flex justify-center items-center">
-        <h2 className="text-2xl font-semibold text-white">Add School</h2>
+        <h2 className="text-2xl font-semibold text-white">Edit Class</h2>
       </div>
 
       <div className="bg-white mt-16 flex flex-col items-center justify-center p-4 md:p-8">
         {formSubmitted ? (
           <div>
             <p className="text-blue-600 mb-6 md:mb-12">
-              School added successfully!
+              Class data updated successfully!
             </p>
             <Link
-              to="/users"
+              to="/classes"
               className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-3 py-3 md:px-4 md:py-4 justify-center items-center rounded-xl cursor-pointer"
             >
-              Back to Users
+              Back to Classes
             </Link>
           </div>
         ) : (
           <form onSubmit={formik.handleSubmit} className="w-full md:w-1/2">
-            {/* Existing form fields here */}
-
             <div className="m-5">
               <input
                 type="text"
-                id="schoolName"
-                placeholder="School Name"
-                name="schoolName"
+                id="class_name"
+                placeholder="Class Name"
+                name="class_name"
                 onChange={formik.handleChange}
-                value={formik.values.schoolName}
+                value={formik.values.class_name}
                 className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:border-blue-600"
               />
-              {formik.errors.schoolName && (
-                <p className="text-red-500 mt-1">{formik.errors.schoolName}</p>
+              {formik.errors.class_name && (
+                <p className="text-red-500 mt-1">{formik.errors.class_name}</p>
               )}
             </div>
 
             <div className="m-5">
               <input
-                type="text"
-                id="schoolLocation"
-                placeholder="School Location"
-                name="schoolLocation"
+                type="number"
+                id="educator_id"
+                placeholder="Educator ID"
+                name="educator_id"
                 onChange={formik.handleChange}
-                value={formik.values.schoolLocation}
+                value={formik.values.educator_id}
                 className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:border-blue-600"
               />
-              {formik.errors.schoolLocation && (
-                <p className="text-red-500 mt-1">{formik.errors.schoolLocation}</p>
+              {formik.errors.educator_id && (
+                <p className="text-red-500 mt-1">{formik.errors.educator_id}</p>
+              )}
+            </div>
+
+            <div className="m-5">
+              <input
+                type="number"
+                id="school_id"
+                placeholder="School ID"
+                name="school_id"
+                onChange={formik.handleChange}
+                value={formik.values.school_id}
+                className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:border-blue-600"
+              />
+              {formik.errors.school_id && (
+                <p className="text-red-500 mt-1">{formik.errors.school_id}</p>
               )}
             </div>
 
@@ -118,10 +125,10 @@ const AddSchool = () => {
                 type="submit"
                 className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 py-3 rounded-xl cursor-pointer mb-4"
               >
-                Add School
+                Update
               </button>
               <Link
-                to="/users"
+                to="/classes"
                 className="bg-blue-600 hover-bg-orange-600 text-white font-bold px-4 py-3 rounded-xl cursor-pointer mb-4"
               >
                 Back
@@ -135,4 +142,4 @@ const AddSchool = () => {
   );
 };
 
-export default AddSchool;
+export default EditClass;
