@@ -20,7 +20,7 @@ const LoginForm = ({onClose, onSwitchToSignUp }) => {
           'Content-Type': 'application/json',
         },
 
-        body: JSON.stringify({ email_address: email, Password: password }), 
+        body: JSON.stringify({ email_address: email, password: password }), 
 
       });
 
@@ -29,6 +29,7 @@ const LoginForm = ({onClose, onSwitchToSignUp }) => {
         const token = data.token;
 
         localStorage.setItem('token', token);
+
 
 
         const roleId = data.roleId; 
