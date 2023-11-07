@@ -164,7 +164,9 @@ const SignupForm = ({ onClose, onSwitchToSignIn }) => {
                 className="w-full px-3 py-2 border rounded-xl bg-white border-gray-300 focus-outline-none"
               >
                 <option value="">Role</option>
-                <option value="Facilitator">Facilitator</option>
+
+                <option value="Owner">Owner</option>
+
                 <option value="Educator">Educator</option>
                 <option value="Student">Student</option>
               </select>
