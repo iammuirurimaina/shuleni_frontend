@@ -5,6 +5,11 @@ import Chat from './components/ChatPage/Chat';
 import Users from './components/UsersPage/Users';
 import AddUsers from './components/UsersPage/AddUsers';
 import EditUsers from './components/UsersPage/EditUsers';
+
+import Schools from './components/SchoolPage/School';
+import AddSchool from './components/SchoolPage/AddSchool';
+import EditSchools from './components/SchoolPage/EditSchool';
+
 import AddSchools from './components/Owners/AddSchools';
 import StudentDashboard from './components/Student/StudentDashboard';
 import CreateClass from './components/Educator/CreateClass'
@@ -16,6 +21,7 @@ import Resources from './components/Student/Resources';
 import AddResources from './components/Educator/AddResources'
 
 
+
 function App() {
   return (
     <Router>
@@ -24,7 +30,15 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/chat" element={<Chat />} />
 
+        <Route path="/schools" element={<Schools />} />
+        <Route path='/add-school' element={<AddSchool />} />
+        <Route path='/schools/:id' element={<EditSchools/>} />
+
         <Route path="/users" element={<Users />} />
+
+        <Route path='/add-users' element={<AddUsers />} />
+        <Route path='/users/:id' element={<EditUsers />} />
+
 
           <Route path='/add-Schools' element={<AddSchools />} />
           <Route path='/owner-dashboard' element={<OwnerDashboard /*user={user.id} roleId = {1}*//> }/>
@@ -44,6 +58,7 @@ function App() {
 
           <Route path='/add-users' element={<AddUsers />} />
           <Route path='/users/:id' element={<EditUsers />} />
+
 
   
       </Routes>
