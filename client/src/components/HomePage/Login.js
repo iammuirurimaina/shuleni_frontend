@@ -38,13 +38,13 @@ const LoginForm = ({onClose, onSwitchToSignUp }) => {
         
         switch (roleId) {
           case 1:
-            navigate('/owners-dashboard');
+            navigate('/owner-dashboard');
             break;
           case 2:
             navigate('/educator-dashboard');
             break;
           case 3:
-            navigate('/students-dashboard');
+            navigate('/student-dashboard');
             break;
           default:
            

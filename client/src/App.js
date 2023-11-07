@@ -27,10 +27,10 @@ function App() {
         <Route path="/users" element={<Users />} />
 
           <Route path='/add-Schools' element={<AddSchools />} />
-          <Route path='/owner-Dashboard' element={<OwnerDashboard /*user={user.id} roleId = {1}*//> }/>
-          <Route path='/educator-Dashboard' element={<EducatorDashboard /*user={user.id} roleId = {1}*/ />} />
+          <Route path='/owner-dashboard' element={<OwnerDashboard /*user={user.id} roleId = {1}*//> }/>
+          <Route path='/educator-dashboard' element={<EducatorDashboard /*user={user.id} roleId = {1}*/ />} />
       
-          <Route path='/student-Dashboard' element={<StudentDashboard /*user={user.id} roleId = {1}*//>} />
+          <Route path='/student-dashboard' element={<StudentDashboard /*user={user.id} roleId = {1}*//>} />
            <Route path='create-class' element={<CreateClass />} />
           <Route path='/users/:id' element={<EditUsers />} />
           <Route path='/edit-class' element={<EditClass />} />
