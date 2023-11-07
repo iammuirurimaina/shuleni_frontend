@@ -1,9 +1,28 @@
-import React from 'react';
+
+import React, { useEffect, useState } from "react";
 
 import ClassCard from './ClassCard';
 import EducatorProfile from './EducatorProfile';
 
-const EducatorDashboard = ({ user, classes, onAddStudents, onDeleteClass }) => {
+const EducatorDashboard = ({ user, onAddStudents, onDeleteClass }) => {
+  const [classes, setClasses] = useState([]);
+  const fetchClasses = async () => {
+    try {
+      const response = await fetch('/classes'); 
+      if (response.ok) {
+        const data = await response.json();
+        setClasses(data);
+      } else {
+        console.error('Failed to fetch classes data:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error fetching classes:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchClasses();
+  }, []);
   return (
     <div className="flex">
       <div className="w-1/4">

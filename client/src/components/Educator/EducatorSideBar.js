@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+
 const handleLogout = async () => {
   try {
     const response = await fetch('/logout', { method: 'GET' });
@@ -14,7 +15,7 @@ const handleLogout = async () => {
   }
 };
 
-function Sidebar() {
+function EducatorSidebar() {
   return (
     
     <div className="fixed bottom-0 left-0 w-full lg:w-40 lg:m-2 lg:h-screen lg:rounded-xl lg:relative lg:top-0 bg-blue-600 text-white flex flex-col items-center ">
@@ -22,7 +23,7 @@ function Sidebar() {
 
       <div className=" w-full flex justify-around items-center lg:flex-col  ">
         <NavLink
-          to="/profile"
+          to="/educator-dashboard"
           className="flex flex-col items-center justify-center text-white font-bold w-12 h-12 p-2 hover:text-white"
           activeClassName="bg-blue-800"
         >
@@ -47,7 +48,7 @@ function Sidebar() {
         </NavLink>
 
         <NavLink
-          to="/users"
+          to="/create-class"
           className="flex flex-col items-center justify-center text-white font-bold w-12 h-12 p-2 hover:text-white"
           activeClassName="bg-blue-800"
         >
@@ -66,12 +67,12 @@ function Sidebar() {
               d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0"
             />
           </svg>
-          <span>Add resources</span>
+          <span>Create Class</span>
           </div>
         </NavLink>
 
         <NavLink
-          to="/resources"
+          to="/add-resources"
           className="flex flex-col items-center justify-center text-white font-bold w-12 h-12 p-2 hover:text-white"
           activeClassName="bg-blue-800"
         >
@@ -147,4 +148,4 @@ function Sidebar() {
   );
 }
 
-export default Sidebar;
+export default EducatorSidebar;
