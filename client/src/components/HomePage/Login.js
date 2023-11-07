@@ -16,7 +16,7 @@ const LoginForm = ({onClose, onSwitchToSignUp }) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email_address: email, Password: password }), 
+        body: JSON.stringify({ email_address: email, password: password }), 
       });
 
       if (response.ok) {
