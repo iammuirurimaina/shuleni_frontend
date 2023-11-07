@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import SideBar from './SideBar';
+import Sidebar from './SideBar';
 import StudentProfile from './StudentProfile';
 import { useNavigate } from 'react-router-dom';
 

@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
+import EducatorSidebar from './EducatorSideBar';
+
 const AddClass = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const navigate = useNavigate();
@@ -42,6 +44,7 @@ const AddClass = () => {
 
   return (
     <div className="mx-auto">
+      <EducatorSidebar />
       <div className="bg-blue-600 px-5 py-5 flex justify-center items-center">
         <h2 className="text-2xl font-semibold text-white">Add Class</h2>
       </div>

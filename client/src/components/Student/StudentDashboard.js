@@ -53,20 +53,20 @@ const StudentDashboard = () => {
       <div className="md:w-3/4 p-4">
         <h2 className="text-3xl font-bold mb-4">My Classes</h2>
         <div className="flex flex-wrap">
-          {classes.map(classItem => (
-            <div key={classItem.id} className="w-full md:w-1/2 lg:w-1/3 p-2 display-card">
-              {/* Wrap the card with a clickable element */}
-              <button
-                onClick={() => handleClassClick(classItem.id)}
-                className="bg-white border rounded-xl p-4 h-full cursor-pointer hover:shadow-lg transition duration-300 ease-in-out"
-              >
-                <h3 className="text-xl font-semibold mb-2">{classItem.class}</h3>
-                <p className="text-gray-600">Educator: {classItem.educator_id}</p>
-                <p className="text-gray-600">School: {classItem.school_id}</p>
-              </button>
-            </div>
-          ))}
-        </div>
+  {classes.map(classItem => (
+    <div key={classItem.id} className="w-full md:w-1/2 lg:w-1/3 p-2">
+      {/* Wrap the card with a clickable element */}
+      <button
+        onClick={() => handleClassClick(classItem.id)}
+        className="bg-white border rounded-xl p-4 h-full cursor-pointer hover:shadow-lg transition duration-300 ease-in-out w-full"
+      >
+        <h3 className="text-xl font-semibold mb-2">{classItem.class}</h3>
+        <p className="text-gray-600">Educator: {classItem.educator_id}</p>
+        <p className="text-gray-600">School: {classItem.school_id}</p>
+      </button>
+    </div>
+  ))}
+</div>
       </div>
     </div>
   );
