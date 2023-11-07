@@ -4,7 +4,10 @@ import {useNavigate } from 'react-router-dom';
 const LoginForm = ({onClose, onSwitchToSignUp }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   // const [role, setRole] = useState(''); 
+
+
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -16,7 +19,9 @@ const LoginForm = ({onClose, onSwitchToSignUp }) => {
         headers: {
           'Content-Type': 'application/json',
         },
+
         body: JSON.stringify({ email_address: email, Password: password }), 
+
       });
 
       if (response.ok) {
@@ -24,6 +29,7 @@ const LoginForm = ({onClose, onSwitchToSignUp }) => {
         const token = data.token;
 
         localStorage.setItem('token', token);
+
 
         const roleId = data.roleId; 
 
@@ -45,7 +51,7 @@ const LoginForm = ({onClose, onSwitchToSignUp }) => {
         console.log('data')
       } else {
         setError('Invalid email, password, or role');
-        
+
         console.error('Login failed:', response.statusText);
       }
     } catch (error) {
@@ -96,7 +102,11 @@ const LoginForm = ({onClose, onSwitchToSignUp }) => {
               className="w-full px-3 py-2 border rounded-xl border-gray-300 focus:outline-none"
             />
           </div>
-          {/* <div className="mb-4">
+
+         
+
+          <div className="mb-4">
+
             <select
               value={role}
               onChange={(e) => setRole(e.target.value)}
@@ -107,7 +117,10 @@ const LoginForm = ({onClose, onSwitchToSignUp }) => {
               <option value="Educator">Educator</option>
               <option value="Student">Student</option>
             </select>
-          </div> */}
+
+
+          </div>
+
 
           {error && <div className="m-5 text-red-600">{error}</div>}
 
@@ -136,4 +149,8 @@ const LoginForm = ({onClose, onSwitchToSignUp }) => {
   );
 };
 
+
 export default LoginForm;
+
+export default LoginForm;
+
