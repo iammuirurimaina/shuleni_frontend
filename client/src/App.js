@@ -14,11 +14,15 @@ import AddSchools from './components/Owners/AddSchools';
 import StudentDashboard from './components/Student/StudentDashboard';
 import CreateClass from './components/Educator/CreateClass'
 import EditClass from './components/Educator/EditClass'
-import AddNotes from './components/Educator/AddResources'
+
 import OwnerDashboard from './components/Owners/OwnerDashboard';
 import EducatorDashboard from './components/Educator/EducatorDashboard';
 import Resources from './components/Student/Resources';
 import AddResources from './components/Educator/AddResources'
+import LoginForm from './components/HomePage/Login';
+import AddStudents from './components/Owners/AddStudents'
+import AddEducators from './components/Owners/AddEducators'
+
 
 
 
@@ -33,6 +37,7 @@ function App() {
         <Route path="/schools" element={<Schools />} />
         <Route path='/add-school' element={<AddSchool />} />
         <Route path='/schools/:id' element={<EditSchools/>} />
+        <Route path='/login' element={<LoginForm />} />
 
         <Route path="/users" element={<Users />} />
 
@@ -56,7 +61,8 @@ function App() {
 
 
 
-          <Route path='/add-users' element={<AddUsers />} />
+          <Route path='/enroll-students' element={<AddStudents />} />
+          <Route path='/add-educator' element={<AddEducators />} />
           <Route path='/users/:id' element={<EditUsers />} />
 
 

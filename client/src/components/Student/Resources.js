@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Sidebar from './SideBar';
+import SideBar from './SideBar';
 import StudentProfile from './StudentProfile';
 import { useNavigate } from 'react-router-dom';
+
 
 const Resources = () => {
   const [resources, setResources] = useState([]);
@@ -32,7 +33,7 @@ const Resources = () => {
 
   return (
     <div className="flex flex-col md:flex-row h-screen">
-      <Sidebar />
+      <SideBar />
       <div className="md:w-1/4 bg-gray-200 p-4">
         <StudentProfile />
       </div>

@@ -14,7 +14,7 @@ const handleLogout = async () => {
   }
 };
 
-function Sidebar() {
+function OwnerSideBar() {
   return (
     
     <div className="fixed bottom-0 left-0 w-full lg:w-40 lg:m-2 lg:h-screen lg:rounded-xl lg:relative lg:top-0 bg-blue-600 text-white flex flex-col items-center ">
@@ -147,4 +147,4 @@ function Sidebar() {
   );
 }
 
-export default Sidebar;
+export default OwnerSideBar;

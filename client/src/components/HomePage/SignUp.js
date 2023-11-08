@@ -1,29 +1,33 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import {useNavigate } from 'react-router-dom';
+
 
 const SignupForm = ({ onClose, onSwitchToSignIn }) => {
   const [isSignupSuccessful, setSignupSuccessful] = useState(false);
   const [isAlreadyRegistered, setAlreadyRegistered] = useState(false);
+  const navigate = useNavigate();
+
 
   const validationSchema = yup.object().shape({
-    Name: yup.string().required('Name is required'),
-    Phone: yup.string().required('Phone is required'),
-    Email: yup.string().email('Invalid email').required('Email is required'),
-    Password: yup
+    name: yup.string().required('Name is required'),
+    phone_number: yup.string().required('Phone is required'),
+    email_address: yup.string().email('Invalid email').required('Email is required'),
+    photo: yup.string().required('photo is required'),
+    password: yup
       .string()
       .min(6, 'Password must be at least 6 characters')
       .required('Password is required'),
-    RepeatPassword: yup
-      .string()
-      .oneOf([yup.ref('Password'), null], 'Passwords must match'),
-    Role: yup.string().required('Role is required'),
-    School: yup.string().required('School is required'),
+
+      role_id: yup.string().required('Role is required'), //role Id set to Owner
+    
+    
   });
 
   const onSubmit = async (values) => {
     try {
-      const isUserRegistered = await checkIfUserIsRegistered(values.Email);
+      const isUserRegistered = await checkIfUserIsRegistered(values.email_address);
 
       if (isUserRegistered) {
         setAlreadyRegistered(true);
@@ -40,10 +44,14 @@ const SignupForm = ({ onClose, onSwitchToSignIn }) => {
           const responseData = await response.json();
           console.log('Sign Up successful:', responseData);
           setSignupSuccessful(true);
+          console.log(values)
+          alert('sign in succesfull')
+          navigate ('/login')
           onClose();
         } else {
           const errorData = await response.json();
           console.error('Sign Up failed:', errorData);
+          console.log(values)
         }
       }
     } catch (error) {
@@ -59,13 +67,14 @@ const SignupForm = ({ onClose, onSwitchToSignIn }) => {
 
   const formik = useFormik({
     initialValues: {
-      Name: '',
-      Phone: '',
-      Email: '',
-      Password: '',
-      RepeatPassword: '',
-      Role: '',
-      School:'',
+      name: '',
+      phone_number: '',
+      photo: '',
+      email_address: '',
+      password: '',
+      
+      role_id: '1',
+      
     },
     validationSchema,
     onSubmit,
@@ -103,88 +112,68 @@ const SignupForm = ({ onClose, onSwitchToSignIn }) => {
               <input
                 type="text"
                 placeholder="Name"
-                name="Name"
+                name="name"
                 onChange={formik.handleChange}
-                value={formik.values.Name}
+                value={formik.values.name}
                 className="w-full px-3 py-2 border rounded-xl border-gray-300 focus:outline-none"
               />
-              {formik.errors.Name && <p className="text-red-500 mt-1">{formik.errors.Name}</p>}
+              {formik.errors.name && <p className="text-red-500 mt-1">{formik.errors.name}</p>}
             </div>
 
             <div className="mb-4">
               <input
                 type="text"
                 placeholder="Phone"
-                name="Phone"
+                name="phone_number"
                 onChange={formik.handleChange}
-                value={formik.values.Phone}
+                value={formik.values.phone_number}
                 className="w-full px-3 py-2 border rounded-xl border-gray-300 focus:outline-none"
               />
-              {formik.errors.Phone && <p className="text-red-500 mt-1">{formik.errors.Phone}</p>}
+              {formik.errors.phone_number && <p className="text-red-500 mt-1">{formik.errors.phone_number}</p>}
             </div>
 
             <div className="mb-4">
               <input
                 type="email"
                 placeholder="Email"
-                name="Email"
+                name="email_address"
                 onChange={formik.handleChange}
-                value={formik.values.Email}
+                value={formik.values.email_address}
                 className="w-full px-3 py-2 border rounded-xl border-gray-300 focus:outline-none"
               />
-              {formik.errors.Email && <p className="text-red-500 mt-1">{formik.errors.Email}</p>}
+              {formik.errors.email_address && <p className="text-red-500 mt-1">{formik.errors.email_address}</p>}
+              
+            </div>
+            <div className="mb-4">
+              <input
+                type="text"
+                placeholder="Photo"
+                name="photo"
+                onChange={formik.handleChange}
+                value={formik.values.photo}
+                className="w-full px-3 py-2 border rounded-xl border-gray-300 focus:outline-none"
+              />
+              {formik.errors.photo && <p className="text-red-500 mt-1">{formik.errors.photo}</p>}
             </div>
             <div className="mb-4">
               <input
                 type="password"
                 placeholder="Password"
-                name="Password"
+                name="password"
                 onChange={formik.handleChange}
-                value={formik.values.Password}
+                value={formik.values.password}
                 className="w-full px-3 py-2 border rounded-xl border-gray-300 focus:outline-none"
               />
-              {formik.errors.Password && <p className="text-red-500 mt-1">{formik.errors.Password}</p>}
+              {formik.errors.password && <p className="text-red-500 mt-1">{formik.errors.password}</p>}
             </div>
-            <div className="mb-4">
-              <input
-                type="password"
-                placeholder="Repeat Password"
-                name="RepeatPassword"
-                onChange={formik.handleChange}
-                value={formik.values.RepeatPassword}
-                className="w-full px-3 py-2 border rounded-xl border-gray-300 focus:outline-none"
-              />
-              {formik.errors.RepeatPassword && <p className="text-red-500 mt-1">{formik.errors.RepeatPassword}</p>}
-            </div>
-            <div className="mb-4">
-              <select
-                name="Role"
-                onChange={formik.handleChange}
-                value={formik.values.Role}
-                className="w-full px-3 py-2 border rounded-xl bg-white border-gray-300 focus-outline-none"
-              >
-                <option value="">Role</option>
 
-                <option value="Owner">Owner</option>
-
-                <option value="Educator">Educator</option>
-                <option value="Student">Student</option>
-              </select>
+            <div className="mb-4">
+   
 
               {formik.errors.Role && <p className="text-red-500 mt-1">{formik.errors.Role}</p>}  
               </div>
 
-              <div className="mb-4">
-                  <input
-                    type="text"
-                    placeholder="School"
-                    name="School"
-                    onChange={formik.handleChange}
-                    value={formik.values.School}
-                    className="w-full px-3 py-2 border rounded-xl border-gray-300 focus:outline-none"
-                  />
-                  {formik.errors.School && <p className="text-red-500 mt-1">{formik.errors.School}</p>}
-                </div>
+   
 
              <div className="flex justify-between items-center">
               <button

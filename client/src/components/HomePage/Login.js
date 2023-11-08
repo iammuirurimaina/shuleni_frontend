@@ -28,12 +28,17 @@ const LoginForm = ({onClose, onSwitchToSignUp }) => {
         const data = await response.json();
         console.log(data);
         const token = data.token;
+        const user_id = data.id
+        
+        
 
         localStorage.setItem('token', token);
+        localStorage.setItem('user_id', user_id);
 
 
 
         const roleId = data.role_id; 
+        const userId = data.user_id
 
         
         switch (roleId) {
@@ -50,7 +55,7 @@ const LoginForm = ({onClose, onSwitchToSignUp }) => {
            
             break;
         }
-        console.log('data')
+
       } else {
         setError('Invalid email, password, or role');
 

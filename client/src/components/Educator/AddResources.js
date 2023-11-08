@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Sidebar from './EducatorSideBar';
+import EducatorSidebar from "./EducatorSideBar";
 import { useNavigate } from 'react-router-dom';
 
 const AddResources = () => {
@@ -55,7 +55,7 @@ const AddResources = () => {
 
   return (
     <div className="flex flex-col md:flex-row h-screen">
-      <Sidebar />
+      <EducatorSidebar />
       <div className="md:w-3/4 p-4">
         <h2 className="text-3xl font-bold mb-4">Class Resources</h2>
         <div className="mb-4">
