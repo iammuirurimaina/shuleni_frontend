@@ -19,6 +19,7 @@ import OwnerDashboard from './components/Owners/OwnerDashboard';
 import EducatorDashboard from './components/Educator/EducatorDashboard';
 import Resources from './components/Student/Resources';
 import AddResources from './components/Educator/AddResources'
+import LoginForm from './components/HomePage/Login';
 
 
 
@@ -33,6 +34,7 @@ function App() {
         <Route path="/schools" element={<Schools />} />
         <Route path='/add-school' element={<AddSchool />} />
         <Route path='/schools/:id' element={<EditSchools/>} />
+        <Route path='/login' element={<LoginForm />} />
 
         <Route path="/users" element={<Users />} />
 

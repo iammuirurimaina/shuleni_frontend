@@ -20,7 +20,7 @@ const SignupForm = ({ onClose, onSwitchToSignIn }) => {
       .min(6, 'Password must be at least 6 characters')
       .required('Password is required'),
 
-      role_id: yup.string().required('Role is required'),
+      role_id: yup.string().required('Role is required'), //role Id set to Owner
     
     
   });
