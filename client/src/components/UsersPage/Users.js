@@ -48,7 +48,7 @@ export const Users = () => {
     <div className="h-screen flex">
       <OwnerSideBar />
       <div className="w-full p-2 border-r border-gray-200">
-        <h1 className="text-blue-600 text-2xl mb-2 font-bold text-center">Users</h1>
+        <h1 className="text-blue-600 text-2xl mb-2 font-bold text-center text-uppercase">Users</h1>
 
     <div className="m-4 flex flex-col items-center justify-center sm:flex-row">
   <input
@@ -85,7 +85,7 @@ export const Users = () => {
                 <th className="py-2 px-4">ID</th>
                 <th className="py-2 px-4">Name</th>
                 <th className="py-2 px-4">Role</th>
-                <th className="py-2 px-4">School</th>
+                {/* <th className="py-2 px-4">School</th> */}
                 <th className="py-2 px-4">Phone</th>
                 <th className="py-2 px-4">Email</th>
                 <th className="py-2 px-4">Actions</th>
@@ -94,8 +94,8 @@ export const Users = () => {
             <tbody>
               {filteredUsers.length === 0 ? (
                 <tr>
-                  <td colSpan="8" className="py-2 px-4 text-center">
-                    No records found.
+                  <td colSpan="8" className="py-2 px-4 text-center text-uppercase fw-bolder">
+                    loading <i class="fa-solid fa-spinner fa-spin-pulse"></i>
                   </td>
                 </tr>
               ) : (
@@ -104,9 +104,9 @@ export const Users = () => {
                     <td className="py-2 px-4">{user.id}</td>
                     <td className="py-2 px-4">{user.name}</td>
                     <td className="py-2 px-4">{user.role}</td>
-                    <td className="py-2 px-4">{user.school}</td>
-                    <td className="py-2 px-4">{user.phone}</td>
-                    <td className="py-2 px-4">{user.email}</td>
+                    {/* <td className="py-2 px-4">{user.school}</td> */}
+                    <td className="py-2 px-4">{user.phone_number}</td>
+                    <td className="py-2 px-4">{user.email_adress}</td>
                     <td className="py-2 px-4">
                       <div className="flex items-center justify-center">
                         <Link to={`/users/${user.id}`}>
