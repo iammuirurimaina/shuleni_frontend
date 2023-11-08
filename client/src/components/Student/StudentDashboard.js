@@ -11,13 +11,18 @@ const StudentDashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userResponse = await fetch('/users');
-        if (userResponse.ok) {
-          const userData = await userResponse.json();
-          const student = userData.find(user => user.role_id === 3);
-          setUser(student);
+        const user_id = localStorage.getItem('user_id');
+        const response = await fetch('/users', {
+          headers: {
+            Authorization: `Bearer ${user_id}`,
+          },
+        });
+        
+        if (response.ok) {
+          console.log(user_id);
+          setUser(user_id);
         } else {
-          console.error('Failed to fetch user data:', userResponse.statusText);
+          console.error('Failed to fetch user data:', response.statusText);
         }
 
         const classResponse = await fetch('/student_classes');

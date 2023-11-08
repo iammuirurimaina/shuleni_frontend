@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Sidebar from "../SideBar";
+import OwnerSideBar from '../Owners/OwnerSideBar'
 
 export const Users = () => {
   const [users, setUsers] = useState([]);
@@ -46,7 +46,7 @@ export const Users = () => {
 
   return (
     <div className="h-screen flex">
-      <Sidebar />
+      <OwnerSideBar />
       <div className="w-full p-2 border-r border-gray-200">
         <h1 className="text-blue-600 text-2xl mb-2 font-bold text-center">Users</h1>
 
