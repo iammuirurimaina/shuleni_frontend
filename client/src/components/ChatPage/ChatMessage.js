@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 
-function NewMessage({ currentUser, onAddMessage }) {
+function NewChat({ onAddMessage }) {
   const [body, setBody] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    fetch("/messages", {
+    fetch("/chats", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username: currentUser.username,
-        body: body,
+        class_id: 12,
+        sender: 4,
+        message: body,
       }),
     })
       .then((r) => r.json())
@@ -38,10 +39,10 @@ function NewMessage({ currentUser, onAddMessage }) {
         type="submit"
         className="bg-blue-600 hover:bg-blue-700 text-white w-1/5 ml-2 rounded-xl"
       >
-        Send
+        Send <i class="fa-solid fa-paper-plane"></i>
       </button>
     </form>
   );
 }
 
-export default NewMessage;
+export default NewChat;
