@@ -105,6 +105,18 @@ const OwnerDashboard = () => {
       console.error('Error updating school:', error);
     }
   };
+  
+  const handleDelete = async (id) => {
+    const response = await fetch(`/schools/${id}`, {
+      method: "DELETE",
+    });
+    if (response.ok) {
+      setSchools(schools.filter((school) => school.id !== id));
+      alert("Deleted Successfully");
+    } else {
+      alert("Failed to delete");
+    }
+  };
 
   return (
         <div className="flex flex-col md:flex-row">
@@ -117,7 +129,7 @@ const OwnerDashboard = () => {
           <h2 className="text-2xl font-bold mb-4">My Schools</h2>
           <div className="flex flex-wrap mb-8">
             {schools.map((school) => (
-              <SchoolCard key={school.id} school={school} onDelete={onDeleteSchool} onUpdate={onUpdateSchool} />
+              <SchoolCard key={school.id} school={school} onDelete={handleDelete} onUpdate={onUpdateSchool} />
             ))}
           </div>
         </div>
