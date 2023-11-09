@@ -28,7 +28,7 @@ const OwnerProfile = ({ user }) => {
   }, [user]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div className="py-2 px-4 text-center text-uppercase fw-bolder">loading <i class="fa-solid fa-spinner fa-spin-pulse"></i></div>;
   }
 
   if (error) {

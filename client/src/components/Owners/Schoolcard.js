@@ -5,8 +5,8 @@ const SchoolCard = ({ school, onDelete, onUpdate }) => {
     <div className="max-w-sm rounded overflow-hidden shadow-lg m-4">
       <img src={school.poster} alt={school.school_name} className="w-full h-48 object-cover" />
       <div className="px-6 py-4">
-        <h2 className="font-bold text-xl mb-2">{school.school_name}</h2>
-        <p className="text-gray-700 mb-2">{school.location}</p>
+        <h2 className="font-bold text-xl mb-2">School Name: {school.school_name}</h2>
+        <p className="text-gray-700 mb-2 font-bold">Location: {school.location}</p>
         <div className="flex justify-between">
           <button onClick={() => onUpdate(school.id)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Update

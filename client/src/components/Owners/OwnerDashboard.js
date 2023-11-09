@@ -51,7 +51,7 @@ const OwnerDashboard = () => {
     fetchData();
   }, []); 
   if (!user) {
-    return <div>Loading...</div>; 
+    return <div className="py-2 px-4 text-center text-uppercase fw-bolder">loading <i class="fa-solid fa-spinner fa-spin-pulse"></i></div>;
   }
   const handleDelete = async (schoolId) => {
     try {
@@ -116,7 +116,7 @@ const OwnerDashboard = () => {
       </div>
       <div className="md:w-3/4 md:flex flex-col">
         <div className="p-8">
-          <h2 className="text-2xl font-bold mb-4">My Schools</h2>
+          <h2 className="text-2xl font-bold mb-4 text-uppercase fw-bold">My Schools</h2>
           <div className="flex flex-wrap mb-8">
           
             {schools.map((school) => (
