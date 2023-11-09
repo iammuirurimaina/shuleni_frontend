@@ -104,7 +104,11 @@ export const Users = () => {
                     <td className="py-2 px-4">{user.id}</td>
                     <td className="py-2 px-4">{user.name}</td>
                     <td className="py-2 px-4">{user.role}</td>
+
+                    <td className="py-2 px-4">{user.school}</td>
+
                     {/* <td className="py-2 px-4">{user.school}</td> */}
+
                     <td className="py-2 px-4">{user.phone_number}</td>
                     <td className="py-2 px-4">{user.email_adress}</td>
                     <td className="py-2 px-4">

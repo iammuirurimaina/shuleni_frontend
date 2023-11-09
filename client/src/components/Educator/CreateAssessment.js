@@ -59,7 +59,7 @@ const CreateAssessment = () => {
     });
     console.log(assessmentData)
     setFormSubmitted(true);
-    navigate('/submissions')
+    navigate('/assessment_responses')
   };
 
 return (
@@ -90,6 +90,17 @@ return (
             />
 
           </div>
+          <div className="mb-6">
+            <input
+              type="text"
+              id="title"
+              placeholder="Title"
+              name="body"
+              onChange={handleChange}
+              value={assessmentData.title}
+              className="w-full px-3 py-2 border rounded-xl border-gray-300 focus:outline-none"
+            />
+            </div>
 
 
 

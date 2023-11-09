@@ -53,14 +53,14 @@ const OwnerDashboard = () => {
   if (!user) {
     return <div className="py-2 px-4 text-center text-uppercase fw-bolder">loading <i class="fa-solid fa-spinner fa-spin-pulse"></i></div>;
   }
-  const onDeleteSchool = async (schoolId) => {
+  const handleDelete = async (schoolId) => {
     try {
    
       const response = await fetch(`'/schools'/${schoolId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          // authentication token)
+          
         },
       });
   
@@ -106,17 +106,7 @@ const OwnerDashboard = () => {
     }
   };
   
-  const handleDelete = async (id) => {
-    const response = await fetch(`/schools/${id}`, {
-      method: "DELETE",
-    });
-    if (response.ok) {
-      setSchools(schools.filter((school) => school.id !== id));
-      alert("Deleted Successfully");
-    } else {
-      alert("Failed to delete");
-    }
-  };
+
 
   return (
         <div className="flex flex-col md:flex-row">
@@ -128,6 +118,7 @@ const OwnerDashboard = () => {
         <div className="p-8">
           <h2 className="text-2xl font-bold mb-4 text-uppercase fw-bold">My Schools</h2>
           <div className="flex flex-wrap mb-8">
+          
             {schools.map((school) => (
               <SchoolCard key={school.id} school={school} onDelete={handleDelete} onUpdate={onUpdateSchool} />
             ))}
