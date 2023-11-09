@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ClassCard = ({ className, onAddStudents, onDelete }) => {
+const ClassCard = ({ }) => {
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg m-4">
       <div className="px-6 py-4">
