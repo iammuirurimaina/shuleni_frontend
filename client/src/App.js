@@ -50,7 +50,7 @@ function App() {
           <Route path='/educator-dashboard' element={<EducatorDashboard /*user={user.id} roleId = {1}*/ />} />
       
           <Route path='/student-dashboard' element={<StudentDashboard /*user={user.id} roleId = {1}*//>} />
-           <Route path='create-class' element={<CreateClass />} />
+          <Route path='create-class' element={<CreateClass />} />
           <Route path='/users/:id' element={<EditUsers />} />
           <Route path='/edit-class' element={<EditClass />} />
           <Route path='/resources' element={<Resources />} />

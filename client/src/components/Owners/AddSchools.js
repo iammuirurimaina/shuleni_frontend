@@ -55,7 +55,7 @@ function AddSchool() {
     <div className="flex flex-col items-center justify-center h-screen">
      
       <h2 className="text-2xl font-semibold mb-4">Add School</h2>
-      <form onSubmit={handleSubmit} className="w-80 bg-white p-6 rounded-lg shadow-lg">
+      <form onSubmit={handleSubmit} className="w-full md:w-1/2">
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-600">School Name:</label>
           <input
