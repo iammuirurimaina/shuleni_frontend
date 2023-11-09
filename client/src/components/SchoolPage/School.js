@@ -92,7 +92,7 @@ export const Schools = () => {
                   src={school.poster}
                   alt={school.school_name}
                   style={{ maxWidth: "100%" }}
-                  className="rounded-xl w-full"
+                  className="rounded-xl w-11/12"
                 />
                 <p className="text-xl font-medium">Location: {school.location}</p>
                 <p className="text-sm font-normal">Created At: {school.created_at}</p>
