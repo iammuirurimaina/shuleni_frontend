@@ -90,7 +90,7 @@ export const StudentAssessments = () => {
                     <td className="py-2 px-4">{assessment.body}</td>
                     <td className="py-2 px-4">{assessment.start_time}</td>
                     <td className="py-2 px-4">{assessment.end_time}</td>
-                    <td className="py-2 px-4">'f{assessment.duration} mins'</td>
+                    <td className="py-2 px-4">{assessment.duration} mins</td>
                   </tr>
                 ))
               )}
