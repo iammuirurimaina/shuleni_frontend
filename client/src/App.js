@@ -22,6 +22,9 @@ import AddResources from './components/Educator/AddResources'
 import LoginForm from './components/HomePage/Login';
 import AddStudents from './components/Owners/AddStudents'
 import AddEducators from './components/Owners/AddEducators'
+import CreateAssessment from './components/Educator/CreateAssesment';
+import Assessments from './components/Educator/Assesments';
+
 
 
 
@@ -55,6 +58,9 @@ function App() {
           <Route path='/edit-class' element={<EditClass />} />
           <Route path='/resources' element={<Resources />} />
           <Route path='/add-resources' element={<AddResources />} />
+          <Route path='/create-assessment' element={<CreateAssessment />} />
+          <Route path='/view-assessment' element={<Assessments />} />
+
 
           
           
