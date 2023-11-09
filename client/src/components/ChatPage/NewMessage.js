@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 
-function NewMessage({ currentUser, onAddMessage }) {
+function NewMessage({ onAddMessage }) {
   const [body, setBody] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    fetch("/messages", {
+    fetch("/chats", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username: currentUser.username,
+        // username: currentUser.username,
         body: body,
       }),
     })
@@ -24,7 +24,7 @@ function NewMessage({ currentUser, onAddMessage }) {
   }
 
   return (
-    <form className="mt-2 pb-6 flex" onSubmit={handleSubmit}>
+    <form className="mt-2 flex pb-16" onSubmit={handleSubmit}>
       <input
         type="text"
         name="body"

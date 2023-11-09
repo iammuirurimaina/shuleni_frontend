@@ -4,14 +4,14 @@ import MessageList from "./MessageList";
 import NewMessage from "./NewMessage";
 import Sidebar from "../SideBar";
 
-const testUser = { username: "Eric" };
+// const testUser = { username: "Eric" };
 
 function Chat() {
   const [messages, setMessages] = useState([]);
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    fetch("/messages")
+    fetch("/chats")
       .then((r) => r.json())
       .then((messages) => setMessages(messages));
   }, []);
@@ -48,11 +48,11 @@ function Chat() {
           <Search search={search} onSearchChange={setSearch} />
           <MessageList
             messages={displayedMessages}
-            currentUser={testUser}
+            // currentUser={testUser}
             onMessageDelete={handleDeleteMessage}
             onUpdateMessage={handleUpdateMessage}
           />
-          <NewMessage currentUser={testUser} onAddMessage={handleAddMessage} />
+          <NewMessage  onAddMessage={handleAddMessage} />
         </div>
       </div>
   );

@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import EditMessage from "./EditMessage";
 
-function Message({ message, currentUser, onMessageDelete, onUpdateMessage }) {
+function Message({ message,  onMessageDelete, onUpdateMessage }) {
   const [isEditing, setIsEditing] = useState(false);
 
-  const { id, username, body, created_at: createdAt } = message;
+  const { id,  body, created_at: createdAt } = message;
 
   const timestamp = new Date(createdAt).toLocaleTimeString();
 
-  const isCurrentUser = currentUser.username === username;
+  // const isCurrentUser = currentUser.username === username;
 
   function handleDeleteClick() {
-    fetch(`/messages/${id}`, {
+    fetch(`/chats/${id}`, {
       method: "DELETE",
     });
 
@@ -26,9 +26,9 @@ function Message({ message, currentUser, onMessageDelete, onUpdateMessage }) {
   return (
     <li className="p-2 mb-2">
    <div className="text-center">    
-  {isCurrentUser && (
+  {(
     <div className="text-black ">
-      <span className="mr-2 font-semibold">{username}</span>
+      {/* <span className="mr-2 font-semibold">{username}</span> */}
       {timestamp}
     </div>
   )}

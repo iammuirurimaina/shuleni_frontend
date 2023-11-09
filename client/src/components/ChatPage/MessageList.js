@@ -1,7 +1,7 @@
 import React from "react";
 import Message from "./Message";
 
-function MessageList({ messages, currentUser, onMessageDelete, onUpdateMessage }) {
+function MessageList({ messages, onMessageDelete, onUpdateMessage }) {
   return (
     <div className="border border-gray-200 p-2 h-3/4 overflow-y-scroll rounded-xl">
       <ul>
@@ -9,7 +9,7 @@ function MessageList({ messages, currentUser, onMessageDelete, onUpdateMessage }
           <Message
             key={message.id}
             message={message}
-            currentUser={currentUser}
+            // currentUser={currentUser}
             onMessageDelete={onMessageDelete}
             onUpdateMessage={onUpdateMessage}
           />

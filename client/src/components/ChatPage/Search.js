@@ -10,7 +10,7 @@ function Search({ search, onSearchChange }) {
         autoComplete="off"
         value={search}
         onChange={(e) => onSearchChange(e.target.value)}
-        className="w-full p-2 border border-gray-200 rounded-xl focus:outline-none focus:border-gray-400"
+        className="w-full p-2  border border-gray-200 rounded-xl focus:outline-none focus:border-gray-400"
       />
     </nav>
   );
