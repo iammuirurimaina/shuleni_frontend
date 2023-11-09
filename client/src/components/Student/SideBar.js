@@ -47,7 +47,7 @@ function Sidebar() {
         </NavLink>
 
         <NavLink
-          to="/view-assesments"
+          to="/student-assessment"
           className="flex flex-col items-center justify-center text-white font-bold w-12 h-12 p-2 hover:text-white"
           activeClassName="bg-blue-800"
         >
