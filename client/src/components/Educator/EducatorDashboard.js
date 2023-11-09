@@ -48,13 +48,16 @@ const EducatorDashboard = () => {
 
   return (
     <div className="flex flex-col md:flex-row">
+
       <EducatorSidebar />
+
       <div className="md:w-1/4 flex justify-center md:items-center bg-gray-200 p-4">
         <EducatorProfile user={user} />
       </div>
       <div className="md:w-3/4 md:flex flex-col">
         <div className="p-8">
           <div className="w-3/4 p-8">
+
             <h2 className="text-2xl font-bold mb-4">My Classes</h2>
             <div className="flex flex-wrap">
               {classes.map((classItem) => (
@@ -67,6 +70,7 @@ const EducatorDashboard = () => {
             </div>
           </div>
         </div>
+
       </div>
     </div>
   );

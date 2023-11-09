@@ -48,7 +48,7 @@ export const Schools = () => {
     <div className="h-screen flex">
       <Sidebar />
       <div className="w-full p-2 border-r border-gray-200">
-        <h1 className="text-blue-600 text-2xl mb-2 font-bold text-center">Schools</h1>
+        <h1 className="text-blue-600 text-2xl mb-2 font-bold text-center text-uppercase">Schools</h1>
 
         <div className="m-4 flex flex-col items-center justify-center sm:flex-row">
           <input
@@ -62,7 +62,7 @@ export const Schools = () => {
           <div className="flex flex-row ">
             <div className="m-2 sm:m-4 flex items-center justify-center">
               <Link to="/add-school">
-                <button className="bg-blue-600 hover-bg-blue-600 text-white font-bold px-4 py-3 rounded-xl cursor-pointer">
+                <button className="bg-blue-600 hover-bg-blue-600 text-white font-bold px-4 py-3 rounded-xl cursor-pointer text-uppercase">
                   Add School
                 </button>
               </Link>

@@ -1,43 +1,42 @@
 import React, { useEffect, useState } from "react";
 import Search from "./Search";
-import MessageList from "./MessageList";
-import NewMessage from "./NewMessage";
+import ChatList from "./ChatList";
+import NewChat from "./ChatMessage";
 import Sidebar from "../SideBar";
 
-const testUser = { username: "Eric" };
 
 function Chat() {
-  const [messages, setMessages] = useState([]);
+  const [chats, setChats] = useState([]);
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    fetch("/messages")
+    fetch("/chats")
       .then((r) => r.json())
-      .then((messages) => setMessages(messages));
+      .then((chats) => setChats(chats));
   }, []);
 
-  function handleAddMessage(newMessage) {
-    setMessages([...messages, newMessage]);
+  function handleAddChat(newChat) {
+    setChats([...chats, newChat]);
   }
 
-  function handleDeleteMessage(id) {
-    const updatedMessages = messages.filter((message) => message.id !== id);
-    setMessages(updatedMessages);
+  function handleDeleteChat(id) {
+    const updatedChat = chats.filter((chat) => chat.id !== id);
+    setChats(updatedChat);
   }
 
-  function handleUpdateMessage(updatedMessageObj) {
-    const updatedMessages = messages.map((message) => {
-      if (message.id === updatedMessageObj.id) {
-        return updatedMessageObj;
+  function handleUpdateChat(updatedChatObj) {
+    const updatedChat = chats.map((chat) => {
+      if (chat.id === updatedChatObj.id) {
+        return updatedChatObj;
       } else {
-        return message;
+        return chat;
       }
     });
-    setMessages(updatedMessages);
+    setChats(updatedChat);
   }
 
-  const displayedMessages = messages.filter((message) =>
-    message.body.toLowerCase().includes(search.toLowerCase())
+  const displayedChats = chats.filter((chat) =>
+    chat.message.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
@@ -46,13 +45,12 @@ function Chat() {
       <div className="w-full p-2 border-r border-gray-200">
         <h1 className="text-blue-600 text-2xl mb-2 font-bold text-center">Chat Room</h1>
           <Search search={search} onSearchChange={setSearch} />
-          <MessageList
-            messages={displayedMessages}
-            currentUser={testUser}
-            onMessageDelete={handleDeleteMessage}
-            onUpdateMessage={handleUpdateMessage}
+          <ChatList
+            chats={displayedChats}
+            onChatDelete={handleDeleteChat}
+            onUpdateChat={handleUpdateChat}
           />
-          <NewMessage currentUser={testUser} onAddMessage={handleAddMessage} />
+          <NewChat onAddMessage={handleAddChat} />
         </div>
       </div>
   );
