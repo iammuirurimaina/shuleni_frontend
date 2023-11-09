@@ -116,10 +116,10 @@ const SubmitAssessment = () => {
                     type="submit"
                     className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 py-3 rounded-xl cursor-pointer mb-4"
                   >
-                    Add Class
+                    Submit
                   </button>
                   <Link
-                    to="/classes"
+                    to="student-assessment"
                     className="bg-blue-600 hover-bg-orange-600 text-white font-bold px-4 py-3 rounded-xl cursor-pointer mb-4"
                   >
                     Back

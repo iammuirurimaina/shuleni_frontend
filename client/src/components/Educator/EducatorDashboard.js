@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, navigate } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 import ClassCard from './ClassCard';
 import EducatorProfile from './EducatorProfile';
 import EducatorSidebar from "./EducatorSideBar";
 
-
-
-const EducatorDashboard = ({ }) => {
+const EducatorDashboard = () => {
   const [user, setUser] = useState(null);
- 
+  const [classes, setClasses] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,14 +18,25 @@ const EducatorDashboard = ({ }) => {
             Authorization: `Bearer ${user_id}`,
           },
         });
-        
+
         if (response.ok) {
-          console.log(user_id);
           setUser(user_id);
         } else {
           console.error('Failed to fetch user data:', response.statusText);
         }
 
+        // Fetch classes data
+        const classesResponse = await fetch('/classes');
+        if (classesResponse.ok) {
+          const classesData = await classesResponse.json();
+          // Filter classes based on educator_id
+          const filteredClasses = classesData.filter(classItem => classItem.educator_id === user_id);
+          setClasses(filteredClasses);
+          console.log(classes)
+          
+        } else {
+          console.error('Failed to fetch classes data:', classesResponse.statusText);
+        }
 
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -36,32 +44,31 @@ const EducatorDashboard = ({ }) => {
     };
 
     fetchData();
-  }, []); 
+  }, []);
 
   return (
     <div className="flex flex-col md:flex-row">
-      < EducatorSidebar />
+
+      <EducatorSidebar />
+
       <div className="md:w-1/4 flex justify-center md:items-center bg-gray-200 p-4">
         <EducatorProfile user={user} />
       </div>
       <div className="md:w-3/4 md:flex flex-col">
         <div className="p-8">
           <div className="w-3/4 p-8">
-              <h2 className="text-2xl font-bold mb-4">My Classes</h2>
 
-              <p>Loading ...... Please Wait</p>
-              {/* <div className="flex flex-wrap">
-                {classes.map((className) => (
-                  <ClassCard
-                    key={className.id}
-                    className={className.name}
-                    onAddStudents={() => onAddStudents(className.id)}
-                    onDelete={() => onDeleteClass(className.id)}
-                  />
-                ))}
-              </div> */}
+            <h2 className="text-2xl font-bold mb-4">My Classes</h2>
+            <div className="flex flex-wrap">
+              {classes.map((classItem) => (
+                <ClassCard
+                  key={classItem.id}
+                  className={classItem.class_name}
+
+                />
+              ))}
             </div>
-          
+          </div>
         </div>
 
       </div>
