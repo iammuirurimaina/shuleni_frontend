@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import EducatorSidebar from "./EducatorSideBar";
+import Sidebar from "./SideBar";
 
-export const Assessments = () => {
+export const StudentAssessments = () => {
   const [assessment, setAssessment] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -29,7 +29,7 @@ export const Assessments = () => {
 
   return (
     <div className="h-screen flex">
-      <EducatorSidebar />
+      <Sidebar />
       <div className="w-full p-2 border-r border-gray-200">
         <h1 className="text-blue-600 text-2xl mb-2 font-bold text-center">Assessments</h1>
 
@@ -44,9 +44,9 @@ export const Assessments = () => {
           />
           <div className="flex flex-row">
             <div className="m-2 sm:m-4 flex items-center justify-center">
-              <Link to="/create-assessment"> {/* Corrected the route name */}
+              <Link to="/submit-assessment"> {/* Corrected the route name */}
                 <button className="bg-blue-600 hover:bg-blue-600 text-white font-bold px-4 py-3 rounded-xl cursor-pointer">
-                  Add Assessment
+                  Submit
                 </button>
               </Link>
             </div>
@@ -64,7 +64,7 @@ export const Assessments = () => {
         <div className="bg-white shadow-md rounded-xl p-2 overflow-x-auto">
           <table className="w-full rounded-xl">
             <thead>
-              <tr className="bg-blue-600 rounded-xl text-white">
+            <tr className="bg-blue-600 rounded-xl text-white">
                 <th className="py-2 px-4">ID</th>
                 <th className="py-2 px-4">Class</th>
                 <th className="py-2 px-4">Title</th>
@@ -90,7 +90,7 @@ export const Assessments = () => {
                     <td className="py-2 px-4">{assessment.body}</td>
                     <td className="py-2 px-4">{assessment.start_time}</td>
                     <td className="py-2 px-4">{assessment.end_time}</td>
-                    <td className="py-2 px-4">{assessment.duration}</td>
+                    <td className="py-2 px-4">'f{assessment.duration} mins'</td>
                   </tr>
                 ))
               )}
@@ -102,4 +102,4 @@ export const Assessments = () => {
   );
 };
 
-export default Assessments;
+export default StudentAssessments;

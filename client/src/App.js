@@ -22,8 +22,11 @@ import AddResources from './components/Educator/AddResources'
 import LoginForm from './components/HomePage/Login';
 import AddStudents from './components/Owners/AddStudents'
 import AddEducators from './components/Owners/AddEducators'
-import CreateAssessment from './components/Educator/CreateAssesment';
-import Assessments from './components/Educator/Assesments';
+import CreateAssessment from './components/Educator/CreateAssessment';
+import EducatorAssessments from './components/Educator/EducatorAssessments';
+import SubmitAssessment from './components/Student/SubmitAssessment';
+import StudentAssessments  from './components/Student/StudentAssessments';
+import Submissions  from './components/Educator/Submissions';
 
 
 
@@ -59,7 +62,10 @@ function App() {
           <Route path='/resources' element={<Resources />} />
           <Route path='/add-resources' element={<AddResources />} />
           <Route path='/create-assessment' element={<CreateAssessment />} />
-          <Route path='/view-assessment' element={<Assessments />} />
+          <Route path='/view-assessment' element={<EducatorAssessments />} />
+          <Route path='/submit-assessment' element={<SubmitAssessment />} />
+          <Route path='/student-assessment' element={<StudentAssessments />} />
+          <Route path='/submissions' element={<Submissions />} />
 
 
           

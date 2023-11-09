@@ -105,8 +105,8 @@ export const Users = () => {
                     <td className="py-2 px-4">{user.name}</td>
                     <td className="py-2 px-4">{user.role}</td>
                     <td className="py-2 px-4">{user.school}</td>
-                    <td className="py-2 px-4">{user.phone}</td>
-                    <td className="py-2 px-4">{user.email}</td>
+                    <td className="py-2 px-4">{user.phone_number}</td>
+                    <td className="py-2 px-4">{user.email_adress}</td>
                     <td className="py-2 px-4">
                       <div className="flex items-center justify-center">
                         <Link to={`/users/${user.id}`}>
