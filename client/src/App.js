@@ -27,6 +27,7 @@ import EducatorAssessments from './components/Educator/EducatorAssessments';
 import SubmitAssessment from './components/Student/SubmitAssessment';
 import StudentAssessments  from './components/Student/StudentAssessments';
 import Submissions  from './components/Educator/Submissions';
+import RoomChat from './components/RoomChat/Chat'
 
 
 
@@ -44,6 +45,7 @@ function App() {
         <Route path='/add-school' element={<AddSchool />} />
         <Route path='/schools/:id' element={<EditSchools/>} />
         <Route path='/login' element={<LoginForm />} />
+        <Route path='/roomchat' element={<RoomChat />}/>
 
         <Route path="/users" element={<Users />} />
 
