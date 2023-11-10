@@ -3,6 +3,7 @@ import React, { useState } from "react";
 function NewChat({ onAddMessage }) {
   const [body, setBody] = useState("");
   const user_id = localStorage.getItem('user_id');
+  const class_id = localStorage.getItem('class_id');
 
 
   function handleSubmit(e) {
@@ -14,7 +15,7 @@ function NewChat({ onAddMessage }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        class_id: 12,
+        class_id: class_id,
         sender: user_id,
         message: body,
       }),

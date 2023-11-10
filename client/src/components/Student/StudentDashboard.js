@@ -54,6 +54,11 @@ const StudentDashboard = () => {
   //   navigate(`/student-dashboard`);
   // };
 
+  function handleClick(id){
+    // console.log(id)
+    localStorage.setItem('class_id', id)
+  }
+
   return (
     <div className="flex flex-col md:flex-row h-screen">
       <Sidebar />
@@ -64,7 +69,7 @@ const StudentDashboard = () => {
         <h2 className="text-3xl font-bold mb-4">My Classes</h2>
         <div className="flex flex-wrap">
           {filteredClasses.map(classItem => (
-            <div key={classItem.id} className="w-full md:w-1/2 lg:w-1/3 p-2">
+            <div key={classItem.id} className="w-full md:w-1/2 lg:w-1/3 p-2" onClick={() =>handleClick(classItem.id)}>
               {/* Wrap the card with a clickable element */}
               <button
                 // onClick={() => handleClassClick(classItem.id)}
@@ -72,6 +77,7 @@ const StudentDashboard = () => {
               >
                 <h3 className="text-xl font-semibold mb-2">{classItem.class}</h3>
                 <p className="text-gray-600">Class ID: {classItem.class_id}</p>
+                <button onClick={() => navigate('/roomchat')}> chats</button>
                 <button
                   className="bg-green-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
                   onClick={openGoogleMeet}

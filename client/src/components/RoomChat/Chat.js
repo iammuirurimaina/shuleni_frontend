@@ -5,27 +5,30 @@ import NewChat from "./ChatMessage";
 import Sidebar from "../SideBar";
 
 
-function RoomChat() {
+function Chat() {
   const [chats, setChats] = useState([]);
   const [search, setSearch] = useState("");
+  const class_id = localStorage.getItem('class_id')
+  console.log(class_id)
 
   useEffect(() => {
     fetch("/chats")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`Failed to fetch chats: ${response.statusText}`);
-        }
-        return response.json();
-      })
-      .then((chats) => {
-        console.log("Fetched chats:", chats);
-        setChats(chats);
+      .then((r) => r.json())
+      .then((allChats) => {
+        // Log the class_id and allChats for debugging
+        console.log("class_id:", class_id);
+        console.log("allChats:", allChats);
+  
+        // Filter chats based on class_id
+        const filteredChats = allChats.filter((chat) => chat.class_id === class_id);
+        console.log("filteredChats:", filteredChats);
+  
+        setChats(filteredChats);
       })
       .catch((error) => {
         console.error("Error fetching chats:", error);
-        // Handle the error as needed, e.g., show a user-friendly message
       });
-  }, [])
+  }, [class_id]);
 
   function handleAddChat(newChat) {
     setChats([...chats, newChat]);
@@ -58,8 +61,7 @@ function RoomChat() {
         <h1 className="text-blue-600 text-2xl mb-2 font-bold text-center">Chat Room</h1>
           <Search search={search} onSearchChange={setSearch} />
           <ChatList
-            chats = {displayedChats}
-            // chats = {chats}
+            chats={displayedChats}
             onChatDelete={handleDeleteChat}
             onUpdateChat={handleUpdateChat}
           />
@@ -69,4 +71,4 @@ function RoomChat() {
   );
 }
 
-export default RoomChat;
+export default Chat;
