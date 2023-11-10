@@ -77,7 +77,8 @@ const StudentDashboard = () => {
               >
                 <h3 className="text-xl font-semibold mb-2">{classItem.class}</h3>
                 <p className="text-gray-600">Class ID: {classItem.class_id}</p>
-                <button onClick={() => navigate('/roomchat')}> chats</button>
+                <button className='btn btn-primary' onClick={() => navigate('/roomchat')}> chats</button>
+                <br></br>
                 <button
                   className="bg-green-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
                   onClick={openGoogleMeet}
