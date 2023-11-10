@@ -105,7 +105,7 @@ export const Users = () => {
                     <td className="py-2 px-4">{user.name}</td>
                     <td className="py-2 px-4">{user.role}</td>
 
-                    <td className="py-2 px-4">{user.school}</td>
+                    {/* <td className="py-2 px-4">{user.school}</td> */}
 
                     {/* <td className="py-2 px-4">{user.school}</td> */}
 
