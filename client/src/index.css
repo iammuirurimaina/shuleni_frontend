@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.display-card{
+ width: 50px;
+ height: auto;
+ margin: 0 auto;
+ padding:  0 auto;
+}
+
+.display-card::before{  
+
+}
+.display-card::after{
+
+}

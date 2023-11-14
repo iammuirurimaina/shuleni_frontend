@@ -4,7 +4,7 @@ import * as yup from 'yup';
 import {useNavigate } from 'react-router-dom';
 
 
-const SignupForm = ({ onClose, onSwitchToSignIn }) => {
+const AddEducators = ({ onClose, onSwitchToSignIn }) => {
   const [isSignupSuccessful, setSignupSuccessful] = useState(false);
   const [isAlreadyRegistered, setAlreadyRegistered] = useState(false);
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ const SignupForm = ({ onClose, onSwitchToSignIn }) => {
       .min(6, 'Password must be at least 6 characters')
       .required('Password is required'),
 
-      role_id: yup.string().required('Role is required'), //role Id set to Owner
+      role_id: yup.string().required('Role is required'), //role Id set to Student
     
     
   });
@@ -45,8 +45,9 @@ const SignupForm = ({ onClose, onSwitchToSignIn }) => {
           console.log('Sign Up successful:', responseData);
           setSignupSuccessful(true);
           console.log(values)
-          alert('sign in succesfull')
-          navigate ('/login')
+          alert('Educator added succesfully')
+          
+          navigate ('/users')
           onClose();
         } else {
           const errorData = await response.json();
@@ -73,7 +74,7 @@ const SignupForm = ({ onClose, onSwitchToSignIn }) => {
       email_address: '',
       password: '',
       
-      role_id: '1',
+      role_id: '2',
       
     },
     validationSchema,
@@ -84,34 +85,19 @@ const SignupForm = ({ onClose, onSwitchToSignIn }) => {
     <div className="fixed inset-0 flex items-center justify-center z-50">
       <div className="bg-white rounded-xl p-4 md:p-8 w-full max-w-md border border-gray-300">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-semibold text-black">Create an Account</h2>
-          <button
-            type="button"
-            onClick={onClose}
-            className="text-black focus-outline-none flex items-center"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6 mr-2"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
+          <h2 className="text-xl font-semibold text-black">Employ An Educator</h2>
+
         </div>
         {isAlreadyRegistered ? (
           <p className="text-red-500">User already registered with this email.</p>
         ) : isSignupSuccessful ? (
-          <p className="text-red-500">Sign Up successful!</p>
+          <p className="text-red-500">Educator Added successful!</p>
         ) : (
           <form onSubmit={formik.handleSubmit}>
             <div className="mb-4">
               <input
                 type="text"
-                placeholder="Name"
+                placeholder="Educators's Name"
                 name="name"
                 onChange={formik.handleChange}
                 value={formik.values.name}
@@ -123,7 +109,7 @@ const SignupForm = ({ onClose, onSwitchToSignIn }) => {
             <div className="mb-4">
               <input
                 type="text"
-                placeholder="Phone"
+                placeholder="Educator's Phone"
                 name="phone_number"
                 onChange={formik.handleChange}
                 value={formik.values.phone_number}
@@ -135,7 +121,7 @@ const SignupForm = ({ onClose, onSwitchToSignIn }) => {
             <div className="mb-4">
               <input
                 type="email"
-                placeholder="Email"
+                placeholder="Educator's Email"
                 name="email_address"
                 onChange={formik.handleChange}
                 value={formik.values.email_address}
@@ -147,7 +133,7 @@ const SignupForm = ({ onClose, onSwitchToSignIn }) => {
             <div className="mb-4">
               <input
                 type="text"
-                placeholder="Photo"
+                placeholder="Educator's Photo"
                 name="photo"
                 onChange={formik.handleChange}
                 value={formik.values.photo}
@@ -180,25 +166,15 @@ const SignupForm = ({ onClose, onSwitchToSignIn }) => {
                 type="submit"
                 className="w-full bg-blue-600 hover-bg-blue-700 text-white rounded-xl px-4 py-2 font-semibold"
               >
-                Sign Up
+                Enroll
               </button>
             </div>
           </form>
         )}
-        <div className="mt-4 text-center">
-          <p className="text-md text-black font-semibold">
-            Already have an account?{' '}
-            <span
-              onClick={onSwitchToSignIn}
-              className="text-blue-600 cursor-pointer font-semibold"
-            >
-              Sign in
-            </span>
-          </p>
-        </div>
+
       </div>
     </div>
   );
 };
 
-export default SignupForm;
+export default AddEducators;
